@@ -41,7 +41,7 @@ class Query
     matching = @db.execute "SELECT * FROM users 
     WHERE username='#{username}'"
 
-    if matching.first['password'] == password
+    if !matching.empty? && matching.first['password'] == password
       @@current_user = matching.first['id']
       return true
     else
@@ -49,7 +49,11 @@ class Query
     end
   end
 
-  def signup user
+  def logout
+    @@current_user = 0
+  end
+
+  def register user
     @db.execute 'INSERT INTO
       users
       (
@@ -71,5 +75,47 @@ class Query
       values (?, ?, ?, ?)', [@@current_user, 
         spending.category, spending.price, spending.date]
   end
+
+  def spending_statistics
+    @db.execute "SELECT date, category, SUM(price) as price FROM spendings
+      WHERE user_id='#{@@current_user}' GROUP BY category, date"
+  end
+
+  def spending_statistics_by_category category
+    @db.execute "SELECT date, category, SUM(price) as price FROM spendings
+      WHERE user_id='#{@@current_user}' AND category='#{category}' GROUP BY date"
+  end
+
+  def spending_statistics_by_day day
+    @db.execute "SELECT category, SUM(price) as price FROM spendings
+      WHERE user_id='#{@@current_user}' AND date='#{day}' GROUP BY category"
+  end
+
+  def spending_statistics_by_month month
+    @db.execute "SELECT category, SUM(price) as price FROM spendings
+      WHERE user_id='#{@@current_user}' AND date>='#{month + '.01'}' 
+        AND date<='#{month + '.31'}' GROUP BY category"
+  end
+
+  def spending_statistics_by_year year
+    @db.execute "SELECT category, SUM(price) as price FROM spendings
+      WHERE user_id='#{@@current_user}' AND date>='#{year + '.01.01'}' 
+        AND date<='#{year + '.12.31'}' GROUP BY category"
+  end
+
+  def delete_spendings
+    @db.execute "DELETE FROM spendings 
+      WHERE user_id='#{@@current_user}'"
+  end
+
+  def delete_account_and_spendings
+    delete_spendings  
+    
+    @db.execute "DELETE FROM users 
+      WHERE id='#{@@current_user}'"
+
+    logout
+  end
+
 
 end
