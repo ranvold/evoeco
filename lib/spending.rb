@@ -59,6 +59,6 @@ class Spending
       day == 29 if Time.new(year, month, day) != Time.new(year, 03, 01) # Leap year
       day >= 1 && day <= 28
     end
-      
   end
+  
 end

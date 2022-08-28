@@ -116,6 +116,5 @@ class Query
 
     logout
   end
-
-
+  
 end

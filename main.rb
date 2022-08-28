@@ -1,6 +1,6 @@
-require "./lib/user"
-require "./lib/query"
-require "./lib/spending"
+require './lib/user'
+require './lib/query'
+require './lib/spending'
 
 # sizes for dates
 DAY = 'day'
@@ -179,4 +179,5 @@ while 2 + 2 == 4
     puts 'Goodbye...'
     break
   end
+
 end
