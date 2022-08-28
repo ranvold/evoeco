@@ -5,7 +5,7 @@ class Query
   @@current_user
 
   def initialize
-    @db = SQLite3::Database.new 'db/evoeco.db'
+    @db = SQLite3::Database.new 'db/evoeco.sqlite3'
 
     @db.results_as_hash = true
 

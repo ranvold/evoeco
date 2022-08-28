@@ -160,7 +160,7 @@ while 2 + 2 == 4
 
           if ans == 'y' || ans == 'yes'
             Query.new.delete_account_and_spendings
-            puts 'Your account and all spendings was deleted. You are logout.'
+            puts 'Your account and all spendings were deleted. You are logout.'
             break
           end
 
