@@ -103,7 +103,7 @@ while 2 + 2 == 4
           print_spendings spendings
 
         elsif command_from_user == '4'
-          puts 'Enter yyyy.mm.dd:'
+          print 'Enter yyyy.mm.dd: '
 
           day = gets.chomp
 

@@ -82,7 +82,7 @@ class Query
   end
 
   def spending_statistics_by_category category
-    @db.execute "SELECT date, category, SUM(price) as price FROM spendings
+    @db.execute "SELECT date, SUM(price) as price FROM spendings
       WHERE user_id='#{@@current_user}' AND category='#{category}' GROUP BY date"
   end
 
