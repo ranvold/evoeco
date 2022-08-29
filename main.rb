@@ -55,9 +55,7 @@ while 2 + 2 == 4
     password = gets.chomp
 
     if Query.new.is_login_succed? username, password
-      status = 'loggedin'
-
-      while status == 'loggedin'
+      while 2 - 2 = 0
         puts '============================'
 
         puts '1. Add spending'
