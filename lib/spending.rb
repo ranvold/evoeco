@@ -16,7 +16,8 @@ class Spending
   # end
 
   def self.is_price_correct? price
-    price.to_f > 0.0
+
+    price.to_f > 0.0 && (price.to_f.to_s.size == price.size || price.to_i.to_s.size == price.size)
   end
 
   def self.is_date_correct? date, size

@@ -11,7 +11,7 @@ def print_spendings spendings
   spendings.each do |spending|
     print spending['date'].to_s + ' ' if spending['date'] != nil
     print spending['category'].to_s + ' '
-    puts spending['price']
+    puts spending['price'].to_s + '$'
   end
 end
 
@@ -55,7 +55,7 @@ while 2 + 2 == 4
     password = gets.chomp
 
     if Query.new.is_login_succed? username, password
-      while 2 - 2 = 0
+      while 2 - 2 == 0
         puts '============================'
 
         puts '1. Add spending'
@@ -75,7 +75,7 @@ while 2 + 2 == 4
         if command_from_user == '1'
           puts "Date: yyyy.mm.dd\n"\
           "Category: food, housing etc\n"\
-          "Price: 15$\n"\
+          "Price: 18.87$\n"\
           "For example: \'2022.08.28 food 15\'"
 
           date_cat_price = gets.strip.downcase.split(/\ /)
